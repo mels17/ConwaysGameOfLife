@@ -9,6 +9,11 @@ public class Cell {
 
     private boolean state;
 
+    public Cell(int xCoordinate, int yCoordinate) {
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
+    }
+
     public Cell(int x, int y, boolean state) {
         this.xCoordinate = x;
         this.yCoordinate = y;

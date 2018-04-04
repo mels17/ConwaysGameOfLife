@@ -11,6 +11,10 @@ public class World {
         setNoOfLivingAndDead();
     }
 
+    public Cell[][] getWorldGrid() {
+        return worldGrid;
+    }
+
     private void setNoOfLivingAndDead() {
         noOfLivingCells = 0;
         noOfDeadCells = 0;
@@ -39,5 +43,9 @@ public class World {
 
     public int getNoOfDeadCells() {
         return noOfDeadCells;
+    }
+
+    public Cell getCellAt(int x, int y) {
+        return worldGrid[x][y];
     }
 }

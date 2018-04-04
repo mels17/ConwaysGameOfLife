@@ -48,4 +48,8 @@ public class World {
     public Cell getCellAt(int x, int y) {
         return worldGrid[x][y];
     }
+
+    public boolean worldIsAllDeadCells() {
+        return noOfDeadCells == (worldGrid.length * worldGrid[0].length);
+    }
 }

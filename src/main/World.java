@@ -6,15 +6,25 @@ public class World {
     private int noOfLivingCells;
     private int noOfDeadCells;
 
+    private static final String DEAD_CELL_REP = "0";
+
+    private static final String LIVE_CELL_REP = "1";
+    // Constructors
     public World(boolean[][] booleanGrid) {
-        new World(initializeCellGridGivenBooleanArray(booleanGrid));
+        this.worldGrid = initializeCellGridGivenBooleanArray(booleanGrid);
+        setNoOfLivingAndDead();
+    }
+
+    public World(Cell[][] worldGrid) {
+        this.worldGrid = worldGrid;
+        setNoOfLivingAndDead();
     }
 
     private Cell[][] initializeCellGridGivenBooleanArray(boolean[][] booleanGrid) {
-        Cell[][] cellGrid = new Cell[booleanGrid[0].length][booleanGrid.length];
-        for (int i = 0; i < booleanGrid.length; i++) {
-            for (int j = 0; j < booleanGrid[i].length; j++) {
-                cellGrid[j][i] = new Cell(j, i, booleanGrid[j][i]);
+        Cell[][] cellGrid = new Cell[booleanGrid.length][booleanGrid[0].length];
+        for (int row = 0; row < booleanGrid.length; row++) {
+            for (int column = 0; column < booleanGrid[row].length; column++) {
+                cellGrid[row][column] = new Cell(row, column, booleanGrid[row][column]);
             }
         }
         return cellGrid;
@@ -22,22 +32,17 @@ public class World {
 
     public static String[][] getStringRepresentationOfWorld(World world) {
         Cell[][] worldGrid = world.getWorldGrid();
-        String[][] worldString = new String[worldGrid[0].length][worldGrid.length];
-        for(int i = 0; i < worldGrid.length; i++) {
-            for (int j = 0; j < worldGrid[i].length; j++) {
-                if (worldGrid[j][i].getState()) {
-                    worldString[j][i] = "1";
+        String[][] worldString = new String[worldGrid.length][worldGrid[0].length];
+        for(int row = 0; row < worldGrid.length; row++) {
+            for (int column = 0; column < worldGrid[row].length; column++) {
+                if (worldGrid[row][column].getState()) {
+                    worldString[row][column] = LIVE_CELL_REP;
                 } else {
-                    worldString[j][i] = "0";
+                    worldString[row][column] = DEAD_CELL_REP;
                 }
             }
         }
         return worldString;
-    }
-
-    public World(Cell[][] worldGrid) {
-        this.worldGrid = worldGrid;
-        setNoOfLivingAndDead();
     }
 
     public Cell[][] getWorldGrid() {
@@ -47,22 +52,22 @@ public class World {
     private void setNoOfLivingAndDead() {
         noOfLivingCells = 0;
         noOfDeadCells = 0;
-        for(int i = 0; i < worldGrid.length; i++) {
-            for (int j = 0; j < worldGrid[i].length; j++) {
-                int result = (worldGrid[i][j].getState()) ? noOfLivingCells++ : noOfDeadCells++;
+        for(int row = 0; row < worldGrid.length; row++) {
+            for (int column = 0;  column < worldGrid[row].length; column++) {
+                int result = (worldGrid[row][column].getState()) ? noOfLivingCells++ : noOfDeadCells++;
             }
         }
     }
 
-    public void addLivingCellAt(int x, int y) {
+    public void addLivingCellAt(int rowNumber, int columnNumber) {
         // Get cell from the world grid and make it living cell.
-        worldGrid[x][y].setState(Cell.ALIVE);
+        worldGrid[rowNumber][columnNumber].setState(Cell.ALIVE);
         setNoOfLivingAndDead();
     }
 
-    public void addDeadCellAt(int x, int y) {
+    public void addDeadCellAt(int rowNumber, int columnNumber) {
         // Get cell from the world grid and make it living cell.
-        worldGrid[x][y].setState(Cell.DEAD);
+        worldGrid[rowNumber][columnNumber].setState(Cell.DEAD);
         setNoOfLivingAndDead();
     }
 
@@ -74,20 +79,20 @@ public class World {
         return noOfDeadCells;
     }
 
-    public Cell getCellAt(int x, int y) {
-        return worldGrid[x][y];
+    public Cell getCellAt(int rowNumber, int columnNumber) {
+        return worldGrid[rowNumber][columnNumber];
     }
 
-    public boolean worldIsAllDeadCells() {
-        return noOfDeadCells == (worldGrid.length * worldGrid[0].length);
-    }
+//    public boolean deadWorld() {
+//        return this.noOfDeadCells == (worldGrid.length * worldGrid[0].length);
+//    }
 
     public boolean worldIsDead() {
         Cell[][] worldGrid = this.getWorldGrid();
         int noOfDeadCells = 0;
-        for (int i = 0; i < worldGrid.length; i++) {
-            for(int j = 0; j < worldGrid[i].length; j++) {
-                if(!worldGrid[j][i].getState()) {
+        for (int row = 0; row < worldGrid.length; row++) {
+            for(int column = 0; column < worldGrid[row].length; column++) {
+                if(!worldGrid[row][column].getState()) {
                     noOfDeadCells++;
                 }
             }

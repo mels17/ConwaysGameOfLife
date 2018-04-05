@@ -9,43 +9,43 @@ public class Neighbour {
     private static List<Cell> getAllPossibleNeighbours(Cell centreCell) {
         List<Cell> allPossibleNeighbours = new ArrayList<Cell>();
 
-        int centreCellX = centreCell.getX();
-        int centreCellY = centreCell.getY();
+        int centreCellRowNumber = centreCell.getRowNumber();
+        int centreCellColumnNumber = centreCell.getColumnNumber();
 
         // NORTH
-        allPossibleNeighbours.add(new Cell(centreCellX, centreCellY - 1));
+        allPossibleNeighbours.add(new Cell(centreCellRowNumber - 1, centreCellColumnNumber));
         //  NORTH-EAST
-        allPossibleNeighbours.add(new Cell(centreCellX + 1, centreCellY - 1));
+        allPossibleNeighbours.add(new Cell(centreCellRowNumber - 1, centreCellColumnNumber + 1));
         // EAST
-        allPossibleNeighbours.add(new Cell(centreCellX + 1, centreCellY));
+        allPossibleNeighbours.add(new Cell(centreCellRowNumber, centreCellColumnNumber + 1));
         // SOUTH-EAST
-        allPossibleNeighbours.add(new Cell(centreCellX + 1, centreCellY + 1));
+        allPossibleNeighbours.add(new Cell(centreCellRowNumber + 1, centreCellColumnNumber + 1));
         //SOUTH
-        allPossibleNeighbours.add(new Cell(centreCellX, centreCellY + 1));
+        allPossibleNeighbours.add(new Cell(centreCellRowNumber + 1, centreCellColumnNumber));
         // SOUTH-WEST
-        allPossibleNeighbours.add(new Cell(centreCellX - 1, centreCellY + 1));
+        allPossibleNeighbours.add(new Cell(centreCellRowNumber + 1, centreCellColumnNumber - 1));
         // WEST
-        allPossibleNeighbours.add(new Cell(centreCellX - 1, centreCellY));
+        allPossibleNeighbours.add(new Cell(centreCellRowNumber, centreCellColumnNumber - 1));
         // NORTH-WEST
-        allPossibleNeighbours.add(new Cell(centreCellX - 1, centreCellY - 1));
+        allPossibleNeighbours.add(new Cell(centreCellRowNumber - 1, centreCellColumnNumber - 1));
 
         return allPossibleNeighbours;
     }
 
     private static HashSet<Cell> getActualSurroundingCells(Cell centreCell, Cell[][] grid) {
         Set<Cell> cellNeighbours = new HashSet<Cell>();
-        int worldEndX = grid.length - 1;
-        int worldEndY = grid[0].length - 1;
-        int x;
-        int y;
+        int worldEndRows = grid.length - 1;
+        int worldEndColumns = grid[0].length - 1;
+        int row;
+        int column;
         List<Cell> allSurroundingCells = getAllPossibleNeighbours(centreCell);
 
         for (Cell cell: allSurroundingCells) {
-            x = getValidCoordinate(worldEndX, cell.getX());
+            row = getValidCoordinate(worldEndRows, cell.getRowNumber());
 
-            y = getValidCoordinate(worldEndY, cell.getY());
+            column = getValidCoordinate(worldEndColumns, cell.getColumnNumber());
 
-            cellNeighbours.add(grid[x][y]);
+            cellNeighbours.add(grid[row][column]);
         }
         return (HashSet<Cell>)cellNeighbours;
     }

@@ -16,13 +16,23 @@ public class NextGeneration {
         return noOfLivingNeighbours == 2 || noOfLivingNeighbours == 3;
     }
 
-    public static World getNextWorld(World world) {
-        World nextWorld = new World(new Cell[world.getWorldGrid().length][world.getWorldGrid().length == 0 ? 0 : world.getWorldGrid()[0].length]);
+    private static Cell[][] populateWithDeadCells(World world) {
+        Cell[][] cells = new Cell[world.getWorldGrid().length][world.getWorldGrid()[0].length];
+        for(int row = 0; row < world.getWorldGrid().length; row++) {
+            for (int column = 0; column < world.getWorldGrid()[row].length; column++) {
+                cells[row][column] = new Cell(row, column, Cell.DEAD);
+            }
+        }
+        return cells;
+    }
 
-        for (int x = 0; x < world.getWorldGrid().length; x++) {
-            for (int y = 0; y < world.getWorldGrid()[x].length; y++) {
-                nextWorld.getCellAt(x, y).setState(computeNextGenForCell(world.getCellAt(x, y),
-                        Neighbour.getLivingNeighbours(world.getCellAt(x, y), world.getWorldGrid())));
+    public static World getNextWorld(World world) {
+        World nextWorld = new World(populateWithDeadCells(world));
+
+        for (int row = 0; row < world.getWorldGrid().length; row++) {
+            for (int column = 0; column < world.getWorldGrid()[row].length; column++) {
+                nextWorld.getCellAt(row, column).setState(computeNextGenForCell(world.getCellAt(row, column),
+                        Neighbour.getLivingNeighbours(world.getCellAt(row, column), world.getWorldGrid())));
             }
         }
         return nextWorld;

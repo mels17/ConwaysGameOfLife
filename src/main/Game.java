@@ -17,6 +17,7 @@ public class Game {
     private static final String SPACE = " ";
     private static final String EMPTY_STRING = "";
     private static final int MIN_WORLD_SIZE = 2;
+    private static final int THREAD_SLEEP_SECONDS = 500;
 
     // Get user's input - could be 0 and 1's
 
@@ -32,7 +33,7 @@ public class Game {
             world = NextGeneration.getNextWorld(world);
             printWorld(world);
             try {
-                Thread.sleep(500);
+                Thread.sleep(THREAD_SLEEP_SECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

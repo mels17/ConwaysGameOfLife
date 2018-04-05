@@ -21,6 +21,9 @@ public class Cell {
         this.state = state;
     }
 
+    public Cell() {
+    }
+
     public void setState(boolean state) {
         this.state = state;
     }

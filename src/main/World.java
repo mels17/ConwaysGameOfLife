@@ -6,6 +6,35 @@ public class World {
     private int noOfLivingCells;
     private int noOfDeadCells;
 
+    public World(boolean[][] booleanGrid) {
+        new World(initializeCellGridGivenBooleanArray(booleanGrid));
+    }
+
+    private Cell[][] initializeCellGridGivenBooleanArray(boolean[][] booleanGrid) {
+        Cell[][] cellGrid = new Cell[booleanGrid[0].length][booleanGrid.length];
+        for (int i = 0; i < booleanGrid.length; i++) {
+            for (int j = 0; j < booleanGrid[i].length; j++) {
+                cellGrid[j][i] = new Cell(j, i, booleanGrid[j][i]);
+            }
+        }
+        return cellGrid;
+    }
+
+    public static String[][] getStringRepresentationOfWorld(World world) {
+        Cell[][] worldGrid = world.getWorldGrid();
+        String[][] worldString = new String[worldGrid[0].length][worldGrid.length];
+        for(int i = 0; i < worldGrid.length; i++) {
+            for (int j = 0; j < worldGrid[i].length; j++) {
+                if (worldGrid[j][i].getState()) {
+                    worldString[j][i] = "1";
+                } else {
+                    worldString[j][i] = "0";
+                }
+            }
+        }
+        return worldString;
+    }
+
     public World(Cell[][] worldGrid) {
         this.worldGrid = worldGrid;
         setNoOfLivingAndDead();
@@ -51,5 +80,18 @@ public class World {
 
     public boolean worldIsAllDeadCells() {
         return noOfDeadCells == (worldGrid.length * worldGrid[0].length);
+    }
+
+    public boolean worldIsDead() {
+        Cell[][] worldGrid = this.getWorldGrid();
+        int noOfDeadCells = 0;
+        for (int i = 0; i < worldGrid.length; i++) {
+            for(int j = 0; j < worldGrid[i].length; j++) {
+                if(!worldGrid[j][i].getState()) {
+                    noOfDeadCells++;
+                }
+            }
+        }
+        return noOfDeadCells == (worldGrid.length) * (worldGrid[0].length);
     }
 }

@@ -17,7 +17,7 @@ public class Game {
 
     // Get user's input - could be 0 and 1's
 
-    public static void run (boolean[][] booleanGrid, Printer printer) {
+    private static void run (boolean[][] booleanGrid, Printer printer) {
         World world = new World(booleanGrid);
         while(!world.worldIsDead()) {
             world = NextGeneration.getNextWorld(world);

@@ -28,34 +28,6 @@ public class IntegratedTest {
     }
 
     @Test
-    public void squareWorldIsInitializedSuccessfully() {
-        World world = new World(getAllDeadCells(3, 3));
-        Assert.assertEquals(9, world.getNoOfDeadCells());
-    }
-
-    @Test
-    public void nonSquareWorldInitializedSuccessfully() {
-        World world = new World(getAllDeadCells(4, 3));
-        Assert.assertEquals(12, world.getNoOfDeadCells());
-    }
-
-    @Test
-    public void livingCellAddedToWorldSuccessfully() {
-        World world = new World(getAllDeadCells(3, 3));
-        world.addLivingCellAt(1,1);
-        Assert.assertEquals(1, world.getNoOfLivingCells());
-        Assert.assertEquals(8, world.getNoOfDeadCells());
-    }
-
-    @Test
-    public void deadCellAddedToWorldSuccessfully(){
-        World world = new World(getAllLiveCells(3,3));
-        world.addDeadCellAt(1,1);
-        Assert.assertEquals(1, world.getNoOfDeadCells());
-        Assert.assertEquals(8, world.getNoOfLivingCells());
-    }
-
-    @Test
     public void givenSquareWorldWithCellSurroundedBy0LivingReturns0Living() {
         World world = new World(getAllDeadCells(3, 3));
         world.addLivingCellAt(1,1);

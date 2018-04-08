@@ -37,4 +37,12 @@ public class DataFormatterClassTest {
                                         {true, true, true}};
         assertThat(expectedResult, equalTo(DataFormatter.storeValueIntoBooleanArray(input, 3)));
     }
+
+    @Test
+    public void returnsBooleanArrayWithInputListWithStrings() {
+        List<String> input = Arrays.asList("0 0 abc", "def 1 0");
+        boolean[][] expectedResult = {{false, false, true},
+                                        {true, true, false}};
+        assertThat(expectedResult, equalTo(DataFormatter.storeValueIntoBooleanArray(input, 3)));
+    }
 }

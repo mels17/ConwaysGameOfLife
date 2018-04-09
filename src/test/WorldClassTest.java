@@ -6,6 +6,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -30,12 +33,24 @@ public class WorldClassTest {
     }
 
     @Test
+    public void givenListOfStringAndNumberOfWorldColumnsInitializeCellGridSuccessfully() {
+        List<String> userInput = new ArrayList<String>();
+        userInput.add("1 0\n");
+        userInput.add("0 0\n");
+
+        World world = new World(userInput, 2);
+        Cell[][] worldGrid = world.getWorldGrid();
+
+        Assert.assertTrue(worldGrid[0][0].isAlive());
+        Assert.assertFalse(worldGrid[0][1].isAlive());
+        Assert.assertFalse(worldGrid[1][1].isAlive());
+        Assert.assertFalse(worldGrid[1][0].isAlive());
+    }
+
+    @Test
     public void computesStringRepresentationOfTheWorldSuccessfully() {
-        String[][] actualResult = World.getStringRepresentationOfWorld(world);
-        String[][] expectedResult = new String[][]{
-                {"0", "1"},
-                {"1", "0"}
-        };
+        String actualResult = World.getStringRepresentationOfWorld(world);
+        String expectedResult = "0 1 \n1 0 \n";
         assertThat(actualResult, equalTo(expectedResult));
     }
 

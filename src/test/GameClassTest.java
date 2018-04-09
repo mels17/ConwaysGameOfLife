@@ -1,7 +1,6 @@
 package test;
 
 import main.Game;
-import main.Printer;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -40,11 +39,11 @@ public class GameClassTest {
         userInput.add("0 1\n");
         userInput.add("q");
 
-        String nextWorldString = "0 0 \n0 0 \n\n\n";
+        String nextWorldString = "0 0 \n0 0 \n\n";
         String expectedResult = userPrompt + nextWorldString;
 
         reader.setReturnValue(userInput);
-        Game.enterGame(reader, new Printer());
+        Game.enterGame(reader, new MockPrinterClass());
         Assert.assertEquals(expectedResult, outContent.toString());
     }
 
@@ -55,7 +54,7 @@ public class GameClassTest {
 
         reader.setReturnValue(userInput);
 
-        Game.enterGame(reader, new Printer());
+        Game.enterGame(reader, new MockPrinterClass());
 
         Assert.assertEquals(userPrompt+"Game Over.\n", outContent.toString());
     }
@@ -67,7 +66,7 @@ public class GameClassTest {
 
         reader.setReturnValue(userInput);
 
-        Game.enterGame(reader, new Printer());
+        Game.enterGame(reader, new MockPrinterClass());
 
         Assert.assertEquals(userPrompt+userPrompt+gameOverMessage, outContent.toString());
     }
@@ -83,9 +82,9 @@ public class GameClassTest {
 
         reader.setReturnValue(userInput);
 
-        Game.enterGame(reader, new Printer());
+        Game.enterGame(reader, new MockPrinterClass());
 
-        String expectedResult = userPrompt + "Invalid entry. Try again..\n" + "1 1 \n1 1 \n1 1 \n\n\n" + "0 0 \n0 0 \n0 0 \n\n\n";
+        String expectedResult = userPrompt + "Invalid entry. Try again..\n" + "1 1 \n1 1 \n1 1 \n\n" + "0 0 \n0 0 \n0 0 \n\n";
         Assert.assertEquals(expectedResult, outContent.toString());
     }
 
@@ -97,7 +96,7 @@ public class GameClassTest {
 
         reader.setReturnValue(userInput);
 
-        Game.enterGame(reader, new Printer());
+        Game.enterGame(reader, new MockPrinterClass());
 
         String expectedResult = userPrompt + "World length should be atleast two in both dimensions.";
 

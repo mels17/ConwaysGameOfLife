@@ -1,5 +1,7 @@
 package main;
 
+import javafx.print.Printer;
+
 import java.util.List;
 
 /**
@@ -15,11 +17,12 @@ public class Game {
 
     // Get user's input - could be 0 and 1's
 
-    private static void run (boolean[][] booleanGrid, Printer printer) {
-        World world = new World(booleanGrid);
+    private static void run (List<String> userInput, IPrinter printer, int worldColumns) {
+        World world = new World(userInput, worldColumns);
         while(!world.worldIsDead()) {
             world = NextGeneration.getNextWorld(world);
-            printer.printWorld(world);
+//            (world) -> {System.out.print(World.getStringRepresentationOfWorld(world));};
+            printer.print(world);
             try {
                 Thread.sleep(THREAD_SLEEP_SECONDS);
             } catch (InterruptedException e) {
@@ -27,13 +30,25 @@ public class Game {
             }
         }
     }
+//    private static void run (boolean[][] booleanGrid, Printer printer, int worldColumns) {
+//        World world = new World(booleanGrid);
+//        while(!world.worldIsDead()) {
+//            world = NextGeneration.getNextWorld(world);
+//            printer.printWorld(world);
+//            try {
+//                Thread.sleep(THREAD_SLEEP_SECONDS);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     /**
      * Entry Point of the game.
      * @param reader - Read input object
      * @param printer - Object of the printer class
      */
-    public static void enterGame (Reader reader, Printer printer) {
+    public static void enterGame (Reader reader, IPrinter printer) {
         int worldColumns = 0;
         String input = "";
 
@@ -51,7 +66,8 @@ public class Game {
         if(output.isEmpty()) {
             return;
         }
-        run(DataParser.storeValueIntoBooleanArray(output, worldColumns), printer);
+//        run(DataParser.storeValueIntoBooleanArray(output, worldColumns), printer);
+        run(output, printer, worldColumns);
     }
 
 

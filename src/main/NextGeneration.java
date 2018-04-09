@@ -28,7 +28,7 @@ public class NextGeneration {
     }
 
     public static World getNextWorld(World world) {
-        World nextWorld = new World(populateWithDeadCells(world));
+        World nextWorld = new World(world.getNoOfRows(), world.getNoOfColumns());
 
         for (int row = 0; row < world.getNoOfRows(); row++) {
             for (int column = 0; column < world.getNoOfColumns(); column++) {

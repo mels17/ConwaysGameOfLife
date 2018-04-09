@@ -18,6 +18,7 @@ public class NextGeneration {
 
     private static Cell[][] populateWithDeadCells(World world) {
         Cell[][] cells = new Cell[world.getWorldGrid().length][world.getWorldGrid()[0].length];
+
         for(int row = 0; row < world.getWorldGrid().length; row++) {
             for (int column = 0; column < world.getWorldGrid()[row].length; column++) {
                 cells[row][column] = new Cell(row, column, Cell.DEAD);

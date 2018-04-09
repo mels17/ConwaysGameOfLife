@@ -25,20 +25,6 @@ public class DataFormatter {
         return worldGrid;
     }
 
-    private static boolean[] convertStringToArrayOfBooleans (String input) {
-        String[] splitString = splitStringWhereSpaces(input);
-        boolean[] booleanArray = new boolean[splitString.length];
-        for (int i = 0; i < splitString.length; i++) {
-            booleanArray[i] = splitString[i].equals("0") ? Cell.DEAD : Cell.ALIVE;
-        }
-        return booleanArray;
-    }
-
-    // VALIDITY
-    private static boolean isValidInput (String input, int worldColumns) {
-        return input.split("\\s+").length == worldColumns;
-    }
-
     public static List<String> getListOfUserInputs(Reader reader, List<String> inputStrings, String input, int worldColumns) {
         while(!input.equals(QUIT) && worldColumns >= MIN_WORLD_SIZE) {
             checkValidity(inputStrings, input, worldColumns);
@@ -55,7 +41,28 @@ public class DataFormatter {
         return inputStrings;
     }
 
+
+
+    private static boolean[] convertStringToArrayOfBooleans (String input) {
+        String[] splitString = splitStringWhereSpaces(input);
+        boolean[] booleanArray = new boolean[splitString.length];
+        for (int i = 0; i < splitString.length; i++) {
+            booleanArray[i] = splitString[i].equals("0") ? Cell.DEAD : Cell.ALIVE;
+        }
+        return booleanArray;
+    }
+
+    // VALIDITY
+    private static boolean isValidInput (String input, int worldColumns) {
+        return input.split("\\s+").length == worldColumns;
+    }
+
+
     private static void checkValidity(List<String> inputStrings, String input, int worldcolumns) {
+
+//        boolean a = (input,worldcolumns) -> { input.split("\\s+").length == worldcolumns; };
+//
+//        boolean abs = () -> {System.out.println("abs");};
         if (isValidInput(input, worldcolumns)) {
             inputStrings.add(input);
         } else {

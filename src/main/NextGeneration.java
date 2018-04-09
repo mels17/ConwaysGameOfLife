@@ -16,17 +16,6 @@ public class NextGeneration {
         return noOfLivingNeighbours == 2 || noOfLivingNeighbours == 3;
     }
 
-    private static Cell[][] populateWithDeadCells(World world) {
-        Cell[][] cells = new Cell[world.getWorldGrid().length][world.getWorldGrid()[0].length];
-
-        for(int row = 0; row < world.getNoOfRows(); row++) {
-            for (int column = 0; column < world.getNoOfColumns(); column++) {
-                cells[row][column] = new Cell(row, column, Cell.DEAD);
-            }
-        }
-        return cells;
-    }
-
     public static World getNextWorld(World world) {
         World nextWorld = new World(world.getNoOfRows(), world.getNoOfColumns());
 

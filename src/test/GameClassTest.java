@@ -7,37 +7,100 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class GameClassTest {
 
-//    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-//    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-//
-//    @Before
-//    public void setUpStreams() {
-//        System.setOut(new PrintStream(outContent));
-//        System.setErr(new PrintStream(errContent));
-//    }
-//
-//    @After
-//    public void restoreStreams() {
-//        System.setOut(System.out);
-//        System.setErr(System.err);
-//    }
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private String userPrompt = "Enter a 2-d array of zeros and ones with spaces:\n";
+    private String gameOverMessage = "Game Over.\n";
+    private MockReaderClass reader;
+    @Before
+    public void setUpMockReaderClassObject() {
+        reader = new MockReaderClass();
+    }
+    @Before
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+    }
 
-//    @Test
-//    public void outputsEnterInputMessageInConsole() {
-//        String expectedResult = "Enter a 2-d array of zeros and ones with spaces:\n";
-//        Game.enterGame(new Scanner(System.in), new Printer());
-//        Assert.assertEquals(expectedResult, outContent.toString());
-//    }
+    @After
+    public void restoreStreams() {
+        System.setOut(System.out);
+    }
 
     @Test
-    public void integratedTest() {
+    public void whenUserEntersCorrectInputReturnsNextWorld() {
+        List<String> userInput = new ArrayList<String>();
+        userInput.add("1 0\n");
+        userInput.add("0 1\n");
+        userInput.add("q");
 
+        String nextWorldString = "0 0 \n0 0 \n\n\n";
+        String expectedResult = userPrompt + nextWorldString;
+
+        reader.setReturnValue(userInput);
+        Game.enterGame(reader, new Printer());
+        Assert.assertEquals(expectedResult, outContent.toString());
+    }
+
+    @Test
+    public void gameStopsWhenLetter_q_IsEntered() {
+        List<String> userInput = new ArrayList<String>();
+        userInput.add("q");
+
+        reader.setReturnValue(userInput);
+
+        Game.enterGame(reader, new Printer());
+
+        Assert.assertEquals(userPrompt+"Game Over.\n", outContent.toString());
+    }
+    @Test
+    public void printsUserPromptAgainWhenTheUserInputLengthIsLessThan2() {
+        List<String> userInput = new ArrayList<String>();
+        userInput.add("1\n");
+        userInput.add("q");
+
+        reader.setReturnValue(userInput);
+
+        Game.enterGame(reader, new Printer());
+
+        Assert.assertEquals(userPrompt+userPrompt+gameOverMessage, outContent.toString());
+    }
+
+    @Test
+    public void printsErrorMessageWhenTheUserInputHasInvalidLength() {
+        List<String> userInput = new ArrayList<String>();
+        userInput.add("1 0\n");
+        userInput.add("1\n");
+        userInput.add("1 0\n");
+        userInput.add("0 1\n");
+        userInput.add("q");
+
+        reader.setReturnValue(userInput);
+
+        Game.enterGame(reader, new Printer());
+
+        String expectedResult = userPrompt + "Invalid entry. Try again..\n" + "1 1 \n1 1 \n1 1 \n\n\n" + "0 0 \n0 0 \n0 0 \n\n\n";
+        Assert.assertEquals(expectedResult, outContent.toString());
+    }
+
+    @Test
+    public void printsErrorMessageWhenTheUserEntersLessThan2LinesOfInputs() {
+        List<String> userInput = new ArrayList<String>();
+        userInput.add("1 0\n");
+        userInput.add("q");
+
+        reader.setReturnValue(userInput);
+
+        Game.enterGame(reader, new Printer());
+
+        String expectedResult = userPrompt + "World length should be atleast two in both dimensions.";
+
+        Assert.assertEquals(expectedResult, outContent.toString());
     }
 }

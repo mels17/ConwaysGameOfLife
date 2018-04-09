@@ -2,7 +2,6 @@ package main;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Example:
@@ -37,13 +36,24 @@ public class Game {
      */
     public static void enterGame (Reader reader, Printer printer) {
         List<String> inputStrings = new ArrayList<>();
+        int worldColumns = 0;
+        String input = "";
 
-        System.out.print("Enter a 2-d array of zeros and ones with spaces:\n");
-        String input = reader.readInput();
-        int worldColumns = DataFormatter.splitStringWhereSpaces(input).length;
+        while(worldColumns < 2) {
+            System.out.print("Enter a 2-d array of zeros and ones with spaces:\n");
+            input = reader.readInput();
+            worldColumns = DataFormatter.splitStringWhereSpaces(input).length;
+            if(input.equals("q")) {
+                System.out.println("Game Over.");
+                return;
+            }
+        }
 
-        run(DataFormatter.storeValueIntoBooleanArray(DataFormatter.getListOfUserInputs(reader, inputStrings,
-                input, worldColumns), worldColumns), printer);
+        List<String> output = DataFormatter.getListOfUserInputs(reader, inputStrings, input, worldColumns);
+        if(output.isEmpty()) {
+            return;
+        }
+        run(DataFormatter.storeValueIntoBooleanArray(output, worldColumns), printer);
     }
 
 

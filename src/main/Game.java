@@ -32,17 +32,17 @@ public class Game {
 
     /**
      * Entry Point of the game.
-     * @param scanner - Java scanner object
+     * @param reader - Read input object
      * @param printer - Object of the printer class
      */
-    public static void enterGame (Scanner scanner, Printer printer) {
+    public static void enterGame (Reader reader, Printer printer) {
         List<String> inputStrings = new ArrayList<>();
 
         System.out.print("Enter a 2-d array of zeros and ones with spaces:\n");
-        String input = scanner.nextLine();
+        String input = reader.readInput();
         int worldColumns = DataFormatter.splitStringWhereSpaces(input).length;
 
-        run(DataFormatter.storeValueIntoBooleanArray(DataFormatter.getListOfUserInputs(scanner, inputStrings,
+        run(DataFormatter.storeValueIntoBooleanArray(DataFormatter.getListOfUserInputs(reader, inputStrings,
                 input, worldColumns), worldColumns), printer);
     }
 

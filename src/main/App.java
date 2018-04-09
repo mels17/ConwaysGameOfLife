@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String... args) {
-        Game.enterGame(new Scanner(System.in), new Printer());
+        Game.enterGame(new ScannerReader(), new Printer());
         // Game.set
     }
 }

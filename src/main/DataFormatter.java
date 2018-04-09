@@ -39,11 +39,11 @@ public class DataFormatter {
         return input.split("\\s+").length == worldColumns;
     }
 
-    public static List<String> getListOfUserInputs(Scanner scanner, List<String> inputStrings, String input, int worldColumns) {
+    public static List<String> getListOfUserInputs(Reader reader, List<String> inputStrings, String input, int worldColumns) {
         while(!input.equals(QUIT) && worldColumns >= MIN_WORLD_SIZE) {
             checkValidity(inputStrings, input, worldColumns);
 
-            input = scanner.nextLine();
+            input = reader.readInput();
 
             if(input.equals(QUIT) && inputStrings.size() < MIN_WORLD_SIZE) {
                 input = EMPTY_STRING;

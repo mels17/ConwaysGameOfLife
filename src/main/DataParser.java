@@ -1,10 +1,10 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
-public class DataFormatter {
+public class DataParser {
     private static final String QUIT = "q";
     private static final String EMPTY_STRING = "";
     private static final int MIN_WORLD_SIZE = 2;
@@ -25,7 +25,8 @@ public class DataFormatter {
         return worldGrid;
     }
 
-    public static List<String> getListOfUserInputs(Reader reader, List<String> inputStrings, String input, int worldColumns) {
+    public static List<String> getListOfUserInputs(Reader reader, String input, int worldColumns) {
+        List<String> inputStrings = new ArrayList<String>();
         while(!input.equals(QUIT) && worldColumns >= MIN_WORLD_SIZE) {
             checkValidity(inputStrings, input, worldColumns);
 
@@ -46,6 +47,7 @@ public class DataFormatter {
     private static boolean[] convertStringToArrayOfBooleans (String input) {
         String[] splitString = splitStringWhereSpaces(input);
         boolean[] booleanArray = new boolean[splitString.length];
+
         for (int i = 0; i < splitString.length; i++) {
             booleanArray[i] = splitString[i].equals("0") ? Cell.DEAD : Cell.ALIVE;
         }

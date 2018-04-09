@@ -23,10 +23,10 @@ public class WorldClassTest {
     @Test
     public void givenBoolean2DArrayReturns2DCellArray() {
         Cell[][] actualCellGrid = world.getWorldGrid();
-        Assert.assertEquals(false, actualCellGrid[0][0].getState());
-        Assert.assertEquals(true, actualCellGrid[0][1].getState());
-        Assert.assertEquals(true, actualCellGrid[1][0].getState());
-        Assert.assertEquals(false, actualCellGrid[1][1].getState());
+        Assert.assertEquals(false, actualCellGrid[0][0].isAlive());
+        Assert.assertEquals(true, actualCellGrid[0][1].isAlive());
+        Assert.assertEquals(true, actualCellGrid[1][0].isAlive());
+        Assert.assertEquals(false, actualCellGrid[1][1].isAlive());
     }
 
     @Test
@@ -45,13 +45,13 @@ public class WorldClassTest {
     public void addsLivingCellToWorldSuccessfully() {
         world.addLivingCellAt(0,0);
         Cell[][] actualCellGrid = world.getWorldGrid();
-        Assert.assertTrue(actualCellGrid[0][0].getState());
+        Assert.assertTrue(actualCellGrid[0][0].isAlive());
     }
 
     @Test
     public void getsTheCellSuccessfully() {
         Cell cell = world.getCellAt(0,1);
-        Assert.assertTrue(cell.getState());
+        Assert.assertTrue(cell.isAlive());
         Assert.assertEquals(0, cell.getRowNumber());
         Assert.assertEquals(1, cell.getColumnNumber());
     }

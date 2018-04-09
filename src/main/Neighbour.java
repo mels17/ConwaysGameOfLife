@@ -68,7 +68,7 @@ public class Neighbour {
         Set<Cell> neighbours = getActualSurroundingCells(centreCell, worldGrid);
 
         for (Cell cell: neighbours) {
-            if(cell.getState()) {
+            if(cell.isAlive()) {
                 livingNeighbours++;
             }
         }

@@ -29,9 +29,10 @@ public class World {
     public static String[][] getStringRepresentationOfWorld(World world) {
         Cell[][] worldGrid = world.getWorldGrid();
         String[][] worldString = new String[worldGrid.length][worldGrid[0].length];
+
         for(int row = 0; row < worldGrid.length; row++) {
             for (int column = 0; column < worldGrid[row].length; column++) {
-                if (worldGrid[row][column].getState()) {
+                if (worldGrid[row][column].isAlive()) {
                     worldString[row][column] = LIVE_CELL_REP;
                 } else {
                     worldString[row][column] = DEAD_CELL_REP;
@@ -59,11 +60,19 @@ public class World {
         int noOfDeadCells = 0;
         for (int row = 0; row < worldGrid.length; row++) {
             for(int column = 0; column < worldGrid[row].length; column++) {
-                if(!worldGrid[row][column].getState()) {
+                if(!worldGrid[row][column].isAlive()) {
                     noOfDeadCells++;
                 }
             }
         }
         return noOfDeadCells == (worldGrid.length) * (worldGrid[0].length);
+    }
+
+    public int getNoOfRows() {
+        return this.worldGrid.length;
+    }
+
+    public int getNoOfColumns() {
+        return this.worldGrid[0].length;
     }
 }

@@ -25,7 +25,7 @@ public class Cell {
         this.state = state;
     }
 
-    public boolean getState() {
+    public boolean isAlive() {
         return state;
     }
 

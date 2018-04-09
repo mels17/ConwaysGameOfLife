@@ -5,7 +5,7 @@ public class NextGeneration {
     // It also gives the next world.
 
     private static boolean computeNextGenForCell(Cell cell, int noOfLivingNeighbours) {
-        return cell.getState() ? aliveCellGetNextState(noOfLivingNeighbours) : deadCellGetNextState(noOfLivingNeighbours);
+        return cell.isAlive() ? aliveCellGetNextState(noOfLivingNeighbours) : deadCellGetNextState(noOfLivingNeighbours);
     }
 
     private static boolean deadCellGetNextState(int noOfLivingNeighbours) {
@@ -19,8 +19,8 @@ public class NextGeneration {
     private static Cell[][] populateWithDeadCells(World world) {
         Cell[][] cells = new Cell[world.getWorldGrid().length][world.getWorldGrid()[0].length];
 
-        for(int row = 0; row < world.getWorldGrid().length; row++) {
-            for (int column = 0; column < world.getWorldGrid()[row].length; column++) {
+        for(int row = 0; row < world.getNoOfRows(); row++) {
+            for (int column = 0; column < world.getNoOfColumns(); column++) {
                 cells[row][column] = new Cell(row, column, Cell.DEAD);
             }
         }
@@ -30,8 +30,8 @@ public class NextGeneration {
     public static World getNextWorld(World world) {
         World nextWorld = new World(populateWithDeadCells(world));
 
-        for (int row = 0; row < world.getWorldGrid().length; row++) {
-            for (int column = 0; column < world.getWorldGrid()[row].length; column++) {
+        for (int row = 0; row < world.getNoOfRows(); row++) {
+            for (int column = 0; column < world.getNoOfColumns(); column++) {
                 nextWorld.getCellAt(row, column).setState(computeNextGenForCell(world.getCellAt(row, column),
                         Neighbour.getLivingNeighbours(world.getCellAt(row, column), world.getWorldGrid())));
             }

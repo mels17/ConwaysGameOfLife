@@ -1,6 +1,5 @@
 package main;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,25 +34,24 @@ public class Game {
      * @param printer - Object of the printer class
      */
     public static void enterGame (Reader reader, Printer printer) {
-        List<String> inputStrings = new ArrayList<>();
         int worldColumns = 0;
         String input = "";
 
         while(worldColumns < 2) {
             System.out.print("Enter a 2-d array of zeros and ones with spaces:\n");
             input = reader.readInput();
-            worldColumns = DataFormatter.splitStringWhereSpaces(input).length;
+            worldColumns = DataParser.splitStringWhereSpaces(input).length;
             if(input.equals("q")) {
                 System.out.println("Game Over.");
                 return;
             }
         }
 
-        List<String> output = DataFormatter.getListOfUserInputs(reader, inputStrings, input, worldColumns);
+        List<String> output = DataParser.getListOfUserInputs(reader, input, worldColumns);
         if(output.isEmpty()) {
             return;
         }
-        run(DataFormatter.storeValueIntoBooleanArray(output, worldColumns), printer);
+        run(DataParser.storeValueIntoBooleanArray(output, worldColumns), printer);
     }
 
 

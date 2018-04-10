@@ -105,20 +105,6 @@ public class World {
             worldString += "\n";
         }
         return worldString;
-
-//        Cell[][] worldGrid = world.getWorldGrid();
-//        String[][] worldString = new String[worldGrid.length][worldGrid[0].length];
-//
-//        for(int row = 0; row < worldGrid.length; row++) {
-//            for (int column = 0; column < worldGrid[row].length; column++) {
-//                if (worldGrid[row][column].isAlive()) {
-//                    worldString[row][column] = LIVE_CELL_REP;
-//                } else {
-//                    worldString[row][column] = DEAD_CELL_REP;
-//                }
-//            }
-//        }
-//        return worldString;
     }
 
     public Cell[][] getWorldGrid() {

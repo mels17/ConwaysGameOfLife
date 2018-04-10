@@ -30,26 +30,3 @@ public class NextGeneration {
 }
 
 
-//interface SAMPrinter {
-//
-//    void print(String input);
-//
-//}
-//
-//class Game {
-//
-//    public void start(SAMPrinter samPrinter) {
-//        samPrinter.print("Hi there");
-//    }
-//
-//}
-//
-//
-//class Application {
-//
-//    public void main() {
-//        new Game().start(input -> Printer.printWorld(input));
-//
-//    }
-//
-//}

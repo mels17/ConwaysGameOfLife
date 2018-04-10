@@ -42,8 +42,6 @@ public class DataParser {
         return inputStrings;
     }
 
-
-
     private static boolean[] convertStringToArrayOfBooleans (String input) {
         String[] splitString = splitStringWhereSpaces(input);
         boolean[] booleanArray = new boolean[splitString.length];
@@ -61,10 +59,6 @@ public class DataParser {
 
 
     private static void checkValidity(List<String> inputStrings, String input, int worldcolumns) {
-
-//        boolean a = (input,worldcolumns) -> { input.split("\\s+").length == worldcolumns; };
-//
-//        boolean abs = () -> {System.out.println("abs");};
         if (isValidInput(input, worldcolumns)) {
             inputStrings.add(input);
         } else {

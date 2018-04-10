@@ -21,7 +21,6 @@ public class Game {
         World world = new World(userInput, worldColumns);
         while(!world.worldIsDead()) {
             world = NextGeneration.getNextWorld(world);
-//            (world) -> {System.out.print(World.getStringRepresentationOfWorld(world));};
             printer.print(world);
             try {
                 Thread.sleep(THREAD_SLEEP_SECONDS);
@@ -30,18 +29,6 @@ public class Game {
             }
         }
     }
-//    private static void run (boolean[][] booleanGrid, Printer printer, int worldColumns) {
-//        World world = new World(booleanGrid);
-//        while(!world.worldIsDead()) {
-//            world = NextGeneration.getNextWorld(world);
-//            printer.printWorld(world);
-//            try {
-//                Thread.sleep(THREAD_SLEEP_SECONDS);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 
     /**
      * Entry Point of the game.
@@ -66,7 +53,6 @@ public class Game {
         if(output.isEmpty()) {
             return;
         }
-//        run(DataParser.storeValueIntoBooleanArray(output, worldColumns), printer);
         run(output, printer, worldColumns);
     }
 

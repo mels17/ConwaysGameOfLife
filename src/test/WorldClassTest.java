@@ -54,7 +54,15 @@ public class WorldClassTest {
         assertThat(actualResult, equalTo(expectedResult));
     }
 
-
+    @Test
+    public void givenTheWorldDimensionsInitializeWorldToAllDead() {
+        World world = new World(2, 2);
+        Cell[][] cellGrid = world.getWorldGrid();
+        Assert.assertFalse(cellGrid[0][0].isAlive());
+        Assert.assertFalse(cellGrid[0][1].isAlive());
+        Assert.assertFalse(cellGrid[1][0].isAlive());
+        Assert.assertFalse(cellGrid[1][1].isAlive());
+    }
 
     @Test
     public void addsLivingCellToWorldSuccessfully() {

@@ -1,4 +1,4 @@
-package main;
+package gameoflife;
 
 public interface Reader {
     String readInput();

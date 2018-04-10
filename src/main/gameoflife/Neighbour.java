@@ -1,4 +1,4 @@
-package main;
+package gameoflife;
 
 import java.util.HashSet;
 import java.util.Set;

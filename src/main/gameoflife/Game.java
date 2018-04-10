@@ -1,6 +1,4 @@
-package main;
-
-import javafx.print.Printer;
+package gameoflife;
 
 import java.util.List;
 

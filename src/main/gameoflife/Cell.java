@@ -1,4 +1,4 @@
-package main;
+package gameoflife;
 
 public class Cell {
     public static final boolean ALIVE = true;

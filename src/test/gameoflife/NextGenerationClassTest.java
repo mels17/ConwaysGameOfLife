@@ -1,6 +1,6 @@
-package test;
+package gameoflife;
 
-import main.NextGeneration;
+import gameoflife.NextGeneration;
 import main.World;
 import org.junit.Assert;
 import org.junit.Test;

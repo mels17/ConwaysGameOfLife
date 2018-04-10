@@ -1,6 +1,6 @@
-package test;
+package gameoflife;
 
-import main.Reader;
+import gameoflife.Reader;
 
 import java.util.List;
 

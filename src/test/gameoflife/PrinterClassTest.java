@@ -1,4 +1,4 @@
-package test;
+package gameoflife;
 
 import main.World;
 import org.junit.Assert;

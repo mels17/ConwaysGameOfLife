@@ -1,6 +1,6 @@
-package test;
+package gameoflife;
 
-import main.IPrinter;
+import gameoflife.IPrinter;
 import main.World;
 
 public class MockPrinterClass implements IPrinter{

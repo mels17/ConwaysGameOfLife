@@ -1,4 +1,4 @@
-package main;
+package gameoflife;
 
 public class NextGeneration {
     // Determine if a cell is live or dead in the next generation.

@@ -1,6 +1,5 @@
-package test;
+package gameoflife;
 
-import main.DataParser;
 import org.junit.Test;
 
 import java.util.Arrays;

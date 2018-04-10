@@ -1,7 +1,7 @@
-package test;
+package gameoflife;
 
 import main.Cell;
-import main.Neighbour;
+import gameoflife.Neighbour;
 import main.World;
 import org.junit.Assert;
 import org.junit.Test;

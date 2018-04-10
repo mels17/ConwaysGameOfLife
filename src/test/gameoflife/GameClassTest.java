@@ -1,6 +1,6 @@
-package test;
+package gameoflife;
 
-import main.Game;
+import gameoflife.Game;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

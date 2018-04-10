@@ -1,4 +1,4 @@
-package test;
+package gameoflife;
 
 import main.Cell;
 import main.World;

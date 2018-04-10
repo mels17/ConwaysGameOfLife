@@ -7,7 +7,6 @@ public class World {
     private Cell[][] worldGrid;
 
     private static final String DEAD_CELL_REP = "0";
-
     private static final String LIVE_CELL_REP = "1";
 
     /**

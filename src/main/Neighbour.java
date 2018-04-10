@@ -10,13 +10,12 @@ public class Neighbour {
 
         int worldEndRows = grid.length - 1;
         int worldEndColumns = grid[0].length - 1;
-        int[] changeX = {-1, 0, 1};
-        int[] changeY = {-1, 0, 1};
+        int[]  possibleDirections = {-1, 0, 1};
         int neighbourRow;
         int neighbourColumn;
 
-        for (int row : changeX) {
-            for (int column : changeY) {
+        for (int row : possibleDirections) {
+            for (int column : possibleDirections) {
                 neighbourRow = centreCell.getRowNumber() + row;
                 neighbourColumn = centreCell.getColumnNumber() + column;
                 try {
